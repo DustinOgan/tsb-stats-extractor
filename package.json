@@ -1,0 +1,23 @@
+{
+  "name": "tsb-stats-extractor",
+  "version": "1.0.0",
+  "description": "This will be a place to house the work done for TSB Stats Extractor. This program will work to support roms released by tecmobowl.org.   The intial pass will be to update for the 32 Team 2021 Edition.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DustinOgan/tsb-stats-extractor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DustinOgan/tsb-stats-extractor/issues"
+  },
+  "homepage": "https://github.com/DustinOgan/tsb-stats-extractor#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+}
