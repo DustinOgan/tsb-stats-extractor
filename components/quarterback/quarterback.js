@@ -43,11 +43,18 @@ async function calculatePassInts(passIntBase){
     return actualInts;
 }
 
+async function calculateAvgPassingYards(yards,attempts){
+    let avg = yards/attempts
+    avg -= avg%.1
+    return avg
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
     calculatePassCompletions : calculatePassCompletions,
     calculatePassYards : calculatePassYards,
     calculatePassTds : calculatePassTds,
-    calculatePassInts : calculatePassInts
+    calculatePassInts : calculatePassInts,
+    calculateAvgPassingYards: calculateAvgPassingYards
 }

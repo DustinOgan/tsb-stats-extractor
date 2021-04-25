@@ -60,7 +60,7 @@ describe('the qb ', async function () {
         const testPassAttempts = await qb.calculatePassAttempts(testQb.passAttemptsBase, testQb.passTdBase)
         expect(testPassAttempts).to.equal(272);
     })
-    it('should calcualte passing yards over 255', async function () {
+    it('should calculate passing yards over 255', async function () {
         /* attempts: 272 * Yards 3778 * completions 155 * touchdowns 31 * interceptions 27 */
         const testQb = await qb.mapStats([16, 155, 125, 108, 194, 0, 0, 112, 0])
         const testPassYards = await qb.calculatePassYards(testQb.passYardsBase, testQb.modPassRushYards)
@@ -71,6 +71,14 @@ describe('the qb ', async function () {
         const testQb = await qb.mapStats([16, 155, 125, 108, 194, 0, 0, 112, 0])
         const testCompletions = await qb.calculatePassCompletions(testQb.passCompleteBase, testQb.passIntBase)
         expect(testCompletions).to.equal(155);
+    })
+
+    it('should correclty calculate the avg passing yardage to match tsb on screen', async function(){
+        /* attempts: 272 * Yards 3778 * completions 155 *  avg 13.8 */
+        const testYardsActual = 3778;
+        const testAttemptsActual = 272
+        const avgPassingYards = await qb.calculateAvgPassingYards(testYardsActual,testAttemptsActual);
+        expect(avgPassingYards).to.equal(13.8)
     })
 
     /* based on full season of backup qb with 0 for all statistics */
