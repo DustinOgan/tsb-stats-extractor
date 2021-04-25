@@ -45,8 +45,9 @@ async function calculatePassInts(passIntBase){
 
 async function calculateAvgPassingYards(yards,attempts){
     let avg = yards/attempts
-    avg -= avg%.1
-    return avg
+    //hacky truncation without rounding to the tenths place
+    avg =  (parseInt(avg*10)/10).toFixed(1)  
+    return parseFloat(avg)
 }
 
 /*
@@ -72,6 +73,14 @@ async function calculateRating(yards, attempts, completions, touchdowns, interce
     return rating;
 }
 
+async function calculateCompletionPercentage(attempts, completions){
+    let completionPercentage = completions/attempts;
+    let completionWholeNumber = completionPercentage * 100
+    //hacky truncation without rounding to the tenths place
+    let computedNumber =  (parseInt(completionWholeNumber*10)/10).toFixed(1)  
+    return parseFloat(computedNumber);
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
@@ -80,5 +89,6 @@ module.exports = {
     calculatePassTds : calculatePassTds,
     calculatePassInts : calculatePassInts,
     calculateAvgPassingYards: calculateAvgPassingYards,
-    calculateRating: calculateRating
+    calculateRating: calculateRating,
+    calculateCompletionPercentage: calculateCompletionPercentage
 }

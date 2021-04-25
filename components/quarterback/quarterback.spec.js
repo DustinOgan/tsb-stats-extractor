@@ -92,6 +92,15 @@ describe('the qb ', async function () {
         expect(testQbRating).to.equal(104.0)
     })
 
+    it('should return a completion percentage that matches the rating displayed for a player in tsb', async function(){
+        /* attempts: 272 * completions 155 * completion percentage 56.9*/
+        const testAttemptsActual = 272;
+        const testCompletionsActual = 155;   
+        const testCompletionPercentage = await qb.calculateCompletionPercentage(testAttemptsActual,testCompletionsActual)
+        expect(testCompletionPercentage).to.equal(56.9)     
+    })
+    
+
     /* based on full season of backup qb with 0 for all statistics */
     it( 'should successfully handle the 0 case', async function(){
         const testQb = await qb.mapStats([ 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
