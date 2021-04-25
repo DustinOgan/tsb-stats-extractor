@@ -49,6 +49,29 @@ async function calculateAvgPassingYards(yards,attempts){
     return avg
 }
 
+/*
+http://primecomputing.com/
+NFL Quarterback Rating Formula
+(National Football League)
+a = (((Comp/Att) * 100) -30) / 20
+b = ((TDs/Att) * 100) / 5
+c = (9.5 - ((Int/Att) * 100)) / 4
+d = ((Yards/Att) - 3) / 4
+
+a, b, c and d can not be greater than 2.375 or less than zero.
+
+QB Rating = (a + b + c + d) / .06
+*/
+async function calculateRating(yards, attempts, completions, touchdowns, interceptions){
+    const factorA = (((completions/attempts) * 100) -30) /20
+    const factorB = ((touchdowns/attempts)* 100 ) / 5
+    const factorC = (9.5 - ((interceptions/attempts)*100)) /4
+    const factorD = ((yards/attempts) -3) /4
+    let rating = (factorA + factorB + factorC + factorD) / .06
+    rating -= rating%.1
+    return rating;
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
@@ -56,5 +79,6 @@ module.exports = {
     calculatePassYards : calculatePassYards,
     calculatePassTds : calculatePassTds,
     calculatePassInts : calculatePassInts,
-    calculateAvgPassingYards: calculateAvgPassingYards
+    calculateAvgPassingYards: calculateAvgPassingYards,
+    calculateRating: calculateRating
 }

@@ -81,6 +81,17 @@ describe('the qb ', async function () {
         expect(avgPassingYards).to.equal(13.8)
     })
 
+    it('should return a rating that matches the rating displayed on tsb player info', async function(){
+        /* attempts: 272 * Yards 3778 * completions 155 * touchdowns 31 * interceptions 27 */
+        const testYardsActual = 3778;
+        const testAttemptsActual = 272;
+        const testCompletionsActual = 155;
+        const testTouchdownsActual = 31;
+        const testInterceptionsActual = 27;
+        const testQbRating = await qb.calculateRating(testYardsActual,testAttemptsActual,testCompletionsActual, testTouchdownsActual, testInterceptionsActual)
+        expect(testQbRating).to.equal(104.0)
+    })
+
     /* based on full season of backup qb with 0 for all statistics */
     it( 'should successfully handle the 0 case', async function(){
         const testQb = await qb.mapStats([ 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
