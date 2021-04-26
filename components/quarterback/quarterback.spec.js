@@ -78,7 +78,7 @@ describe('the qb ', async function () {
         /* attempts: 272 * Yards 3778 * completions 155 *  avg 13.8 */
         const testYardsActual = 3778;
         const testAttemptsActual = 272
-        const avgPassingYards = await qb.calculateAvgPassingYards(testYardsActual, testAttemptsActual);
+        const avgPassingYards = await qb.calculateAvgYards(testYardsActual, testAttemptsActual);
         expect(avgPassingYards).to.equal(13.8)
     })
 
@@ -131,5 +131,13 @@ describe('the qb ', async function () {
          const testQb = await qb.mapStats([ 229, 126, 104, 80, 252, 56, 50, 89, 16 ])
          const testQbRushTds = await qb.calculateRushTds(testQb.rushTDsBase)
         expect(testQbRushTds).to.equal(4);
+    })
+
+    it('should successfully caculate the qbs rushing average', async function(){
+         /* rushAttempts: 56 * rush yds : 306 * rush td 4 , rush avg 5.4*/
+        const testQb = await qb.mapStats([ 229, 126, 104, 80, 252, 56, 50, 89, 16 ])
+        const testAvgRushYards = await qb.calculateAvgYards(306, 56)
+        expect(testAvgRushYards).to.equal(5.4);
+
     })
 })

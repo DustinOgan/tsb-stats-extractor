@@ -43,13 +43,6 @@ async function calculatePassInts(passIntBase){
     return actualInts;
 }
 
-async function calculateAvgPassingYards(yards,attempts){
-    let avg = yards/attempts
-    //hacky truncation without rounding to the tenths place
-    avg =  (parseInt(avg*10)/10).toFixed(1)  
-    return parseFloat(avg)
-}
-
 async function calculateRating(yards, attempts, completions, touchdowns, interceptions){
     const factorA = (((completions/attempts) * 100) -30) /20
     const factorB = ((touchdowns/attempts)* 100 ) / 5
@@ -82,6 +75,14 @@ async function calculateRushTds(baseRushTds){
     let actualRushTds = baseRushTds / 4
     return actualRushTds;
 }
+
+async function calculateAvgYards(yards,attempts){
+    let avg = yards/attempts
+    //hacky truncation without rounding to the tenths place
+    avg =  (parseInt(avg*10)/10).toFixed(1)  
+    return parseFloat(avg)
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
@@ -89,10 +90,10 @@ module.exports = {
     calculatePassYards : calculatePassYards,
     calculatePassTds : calculatePassTds,
     calculatePassInts : calculatePassInts,
-    calculateAvgPassingYards: calculateAvgPassingYards,
     calculateRating: calculateRating,
     calculateCompletionPercentage: calculateCompletionPercentage,
     calculateRushAttempts: calculateRushAttempts,
     calculateRushYards : calculateRushYards,
-    calculateRushTds : calculateRushTds
+    calculateRushTds : calculateRushTds,
+    calculateAvgYards : calculateAvgYards
 }
