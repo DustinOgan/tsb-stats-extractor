@@ -2,8 +2,8 @@ async function mapStats(decimalArray){
     const qbRaw = {
     passAttemptsBase : decimalArray[0],
     passCompleteBase : decimalArray[1],
-    passTdBase : decimalArray[2], //include attempt Mod
-    passIntBase : decimalArray[3], //includes attempt mod
+    passTdBase : decimalArray[2],
+    passIntBase : decimalArray[3], 
     passYardsBase : decimalArray[4],
     rushAttempts : decimalArray[5],
     rushYardsBase : decimalArray[6],
@@ -50,19 +50,6 @@ async function calculateAvgPassingYards(yards,attempts){
     return parseFloat(avg)
 }
 
-/*
-http://primecomputing.com/
-NFL Quarterback Rating Formula
-(National Football League)
-a = (((Comp/Att) * 100) -30) / 20
-b = ((TDs/Att) * 100) / 5
-c = (9.5 - ((Int/Att) * 100)) / 4
-d = ((Yards/Att) - 3) / 4
-
-a, b, c and d can not be greater than 2.375 or less than zero.
-
-QB Rating = (a + b + c + d) / .06
-*/
 async function calculateRating(yards, attempts, completions, touchdowns, interceptions){
     const factorA = (((completions/attempts) * 100) -30) /20
     const factorB = ((touchdowns/attempts)* 100 ) / 5
@@ -81,6 +68,10 @@ async function calculateCompletionPercentage(attempts, completions){
     return parseFloat(computedNumber);
 }
 
+async function calculateRushAttempts(rushAttempts){
+    return rushAttempts;
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
@@ -90,5 +81,6 @@ module.exports = {
     calculatePassInts : calculatePassInts,
     calculateAvgPassingYards: calculateAvgPassingYards,
     calculateRating: calculateRating,
-    calculateCompletionPercentage: calculateCompletionPercentage
+    calculateCompletionPercentage: calculateCompletionPercentage,
+    calculateRushAttempts: calculateRushAttempts
 }
