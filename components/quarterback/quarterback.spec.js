@@ -118,4 +118,11 @@ describe('the qb ', async function () {
         const testQbRushAttempts = await qb.calculateRushAttempts(testQb.rushAttempts)
         expect(testQbRushAttempts).to.equal(56);
     })
+
+    it('should successfully calcuate the qbs rushing yards', async function(){
+        /* rushAttempts: 56 * rush yds : 306 * rush td 4 */
+        const testQb = await qb.mapStats([ 229, 126, 104, 80, 252, 56, 50, 89, 16 ])
+        const testQbRushYards = await qb.calculateRushYards(testQb.rushYardsBase, testQb.modPassRushYards)
+        expect(testQbRushYards).to.equal(306);
+    })
 })

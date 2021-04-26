@@ -72,6 +72,12 @@ async function calculateRushAttempts(rushAttempts){
     return rushAttempts;
 }
 
+async function calculateRushYards(rushYardsBase, modifier){
+    let rushModifier = (modifier % 8) * 256   
+    let totalYards = rushYardsBase + rushModifier
+    return totalYards;
+}
+
 module.exports = { 
     mapStats : mapStats,
     calculatePassAttempts : calculatePassAttempts,
@@ -82,5 +88,6 @@ module.exports = {
     calculateAvgPassingYards: calculateAvgPassingYards,
     calculateRating: calculateRating,
     calculateCompletionPercentage: calculateCompletionPercentage,
-    calculateRushAttempts: calculateRushAttempts
+    calculateRushAttempts: calculateRushAttempts,
+    calculateRushYards : calculateRushYards
 }
